@@ -153,16 +153,17 @@ public class Player : MonoBehaviour {
 		transform.position	= positionVector;
 
 
-		//Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
-		//smokeColour = new Color(red/100f, green/100f, blue/100f, 1f);
+        //Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
+        //smokeColour = new Color(red/100f, green/100f, blue/100f, 1f);
 
-		//If health will effect the alpha, comment out above line and use the one below
-		smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
+        //If health will effect the alpha, comment out above line and use the one below
+        #warning All of this needs to be updated so health is shown by number of bubbles instead of fade
+        smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
 
-
-		//Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
-		//A higher number means less smoke/bubbles
-		if (framz > smokeDelay) {
+        #warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
+        //Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
+        //A higher number means less smoke/bubbles
+        if (framz > smokeDelay) {
 			var emitParams = new ParticleSystem.EmitParams ();
 			//Debug.Log (emitParams.position);
 			emitParams.startColor = smokeColour;

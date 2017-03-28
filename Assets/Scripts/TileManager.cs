@@ -91,26 +91,4 @@ public class TileManager : MonoBehaviour {
 		go.transform.position = Vector3.forward * spawnZ;
 		spawnZ += tileLength;
 	}
-
-   /* private void SpawnFish(int prefabIndex = -1)
-    {
-        GameObject go;
-
-        //Calls spawner code to create a new fish
-        go = spawner.SpawnFish();
-        go.transform.SetParent(transform);
-
-
-        //Moves new tile into a emtpy spot in the array of fish tiles
-        for (int i = 0; i < fishes.Length; i++)
-        {
-            if (fishes[i] == null)
-            {
-                fishes[i] = go;
-                break;
-            }
-        }
-        //fishes forward position is related to the location of tiles spawning
-        go.transform.position = new Vector3(0, Random.Range(0, 6.0f), spawnZ);
-    }*/
 }

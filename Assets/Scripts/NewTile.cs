@@ -31,10 +31,13 @@ public class NewTile : MonoBehaviour {
 			}
 		}
 
-		return go;
+        //Implement Background Object Spawning
+        #warning Call background object spawning methods with random frequency
+
+        return go;
 	}
 
-	private GameObject SpawnFish(Transform tile, bool hard)
+	private void SpawnFish(Transform tile, bool hard)
     {
         GameObject go;
         go = Instantiate(fishPrefab) as GameObject;
@@ -55,8 +58,21 @@ public class NewTile : MonoBehaviour {
 		}
 
 		go.transform.position = new Vector3(0, Random.Range(0, 6.0f), Random.Range(-50f, 50f));
+    }
 
-        return go;
+    private void SpawnCoral(Transform tile, bool hard)
+    {
+        #warning Implement SpawnCoral method
+    }
+
+    private void SpawnFishHooks(Transform tile, bool hard)
+    {
+        #warning Implement SpawnFishHooks method
+    }
+
+    private void SpawnSeaweed(Transform tile, bool hard)
+    {
+        #warning Implement SpawnSeaweed method
     }
 
 }
