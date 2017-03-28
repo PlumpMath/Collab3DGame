@@ -15,7 +15,7 @@ public class TileManager : MonoBehaviour {
     private float playerTilePosition	= 0;
 	private float spawnZ 				= 0.0f;
 	private int   tilesConstant			= 7;
-	private float tileLength			= 100;
+	private float tileLength			= 150;
 	private float time					= 0f;
 
 
