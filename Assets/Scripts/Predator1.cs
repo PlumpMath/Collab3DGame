@@ -77,13 +77,21 @@ public class Predator1 : MonoBehaviour {
 
 		//check if colour was brought back to balance
 		if (balance < prevBalance)
-			timeStart += 25f;
+			timeStart = timeNow;
+			//timeStart += 25f;
 
 		Vector3 goal = player.transform.position;
-		goal.z -= distance/(timeNow-timeStart);
+		goal.z -= (-0.6f * (timeNow - timeStart) + 10f);
 
 
 		transform.position = Vector3.Lerp (transform.position, goal, beta);
+
+		//if predator gets close enough to bite
+		if ((player.transform.position - transform.position).magnitude < 2) {
+			playerScript.red = 100;
+			playerScript.green = 100;
+			playerScript.blue = 100;
+		}
 	}
 
 	public void DestroyPred() {
