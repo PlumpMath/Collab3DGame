@@ -16,6 +16,7 @@ public class Predator1 : MonoBehaviour {
 	private float timeNow;
 	private float prevBalance;
 	private float balance;
+	private float beta;
 
 
 	void Start () {
@@ -32,6 +33,9 @@ public class Predator1 : MonoBehaviour {
 
 		//set start balance
 		balance = playerScript.getBalance ();
+
+		//set start beta
+		beta = 0.05f;
 
 		GetComponent<Renderer>().material.color = fishColor;
 	}
@@ -64,6 +68,9 @@ public class Predator1 : MonoBehaviour {
 		//undate time
 		timeNow += Time.deltaTime;
 
+		//update beta
+		beta = (5 * playerScript.horSpeed)/1000; 
+
 		//undate balance
 		prevBalance = balance;
 		balance = playerScript.getBalance ();
@@ -76,7 +83,7 @@ public class Predator1 : MonoBehaviour {
 		goal.z -= distance/(timeNow-timeStart);
 
 
-		transform.position = Vector3.Lerp (transform.position, goal, .04f);
+		transform.position = Vector3.Lerp (transform.position, goal, beta);
 	}
 
 	public void DestroyPred() {

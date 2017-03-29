@@ -22,7 +22,7 @@ public class NewTile : MonoBehaviour {
 
 		//spawn fish
 		if (fish) {
-			int fishz = Random.Range (3, 7);
+			int fishz = Random.Range (5, 15);
 			for (int i = 0; i < fishz; i++) {
 				if (Random.Range (0, 10000) < timeAlive)
 					SpawnFish (go.transform, true);
@@ -57,7 +57,7 @@ public class NewTile : MonoBehaviour {
 				go.GetComponent<SpawnedFish> ().setColour (Color.blue);
 		}
 
-		go.transform.position = new Vector3(0, Random.Range(0, 6.0f), Random.Range(-50f, 50f));
+		go.transform.position = new Vector3(0, Random.Range(-5f, 8f), Random.Range(-75f, 75f));
     }
 
     private void SpawnCoral(Transform tile, bool hard)
