@@ -35,6 +35,10 @@ public class Player : MonoBehaviour {
 	public float 	colourMult			= 10;
 	//private int 	difficulty			= 30;
 
+	//Predator Spawns
+	private bool predator1 = false;
+	private float balance = 0f;
+
 
 
     private void Start () 
@@ -71,14 +75,15 @@ public class Player : MonoBehaviour {
 
 
 
-		//Does colour imbalance exist?
-		isBalanced();
+		//Update balance of colours
+		balance = Mathf.Max (red, green, blue) - Mathf.Min (red, green, blue);
+
 
 		//if all colours reach the bottom, and in balance, push them all back up
-		if (red < colourMult + 10 && green < colourMult + 10 && blue < colourMult + 10) {
-			red += Mathf.Max (colourMult, 50f);
-			green += Mathf.Max (colourMult, 50f);
-			blue += Mathf.Max (colourMult, 50f);
+		if (red < colourMult + 5 || green < colourMult + 5 || blue < colourMult + 5) {
+			red += Mathf.Max (colourMult, 10f);
+			green += Mathf.Max (colourMult, 10f);
+			blue += Mathf.Max (colourMult, 10f);
 
 		}
 
@@ -184,11 +189,6 @@ public class Player : MonoBehaviour {
 		oceanColor += color;
 
 		//hitting fish changes the colour attributes of the player representing colour which changes the smoke colour
-		/*red -= colourMult * color.r;
-		green -= colourMult * color.g;
-		blue -= colourMult * color.b;*/
-
-
 		//if we want to only remove the largest colour aspect of the fish use the below code instead of above.
 		{
 			float r = color.r, g = color.g, b = color.b;
@@ -236,6 +236,11 @@ public class Player : MonoBehaviour {
 		timeGoing = newTime;
 	}
 
+	//Setter method called when predator 'dies'
+	public void setPred1Ded () {
+		predator1 = false;
+	}
+
 	public int getMinColour () {
 		int colourOut;
 		if (red < green && red < blue)
@@ -247,4 +252,6 @@ public class Player : MonoBehaviour {
 
 		return colourOut;
 	}
+
+
 }
