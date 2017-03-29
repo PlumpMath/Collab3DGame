@@ -58,7 +58,7 @@ public class NewTile : MonoBehaviour {
 				go.GetComponent<SpawnedFish> ().setColour (Color.blue);
 		}
 
-		go.transform.position = new Vector3(10, Random.Range(-25f, 10f), Random.Range(-80f, 80f));
+		go.transform.position = new Vector3(10, Random.Range(-35f, 9f), Random.Range(-80f, 80f));
     }
 
     private void SpawnCoral(Transform tile, bool hard)
