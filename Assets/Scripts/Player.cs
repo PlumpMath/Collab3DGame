@@ -35,6 +35,12 @@ public class Player : MonoBehaviour {
 	public float 	colourMult			= 10;
 	//private int 	difficulty			= 30;
 
+	//Predator Spawns
+	private bool 		predator1 	= false;
+	private float 		balance 	= 0f;
+	private GameObject 	predator;
+	public GameObject 	predPrefab;
+
 
 
     private void Start () 
@@ -71,14 +77,29 @@ public class Player : MonoBehaviour {
 
 
 
-		//Does colour imbalance exist?
-		isBalanced();
+		//Update balance of colours
+		balance = Mathf.Max (red, green, blue) - Mathf.Min (red, green, blue);
+
+		if (balance > difference && !predator1) {
+			predator1 = true;
+			predator = Instantiate (predPrefab) as GameObject;
+			Vector3 temp = predator.transform.position;
+			temp.z -= 20;
+			predator.transform.position = temp;
+		}
+
+		//If balance is regained
+		if (balance < difference * 2 / 3 && predator1) {
+			predator.GetComponent<Predator1> ().DestroyPred ();
+			predator = null;
+		}
+
 
 		//if all colours reach the bottom, and in balance, push them all back up
-		if (red < colourMult + 10 && green < colourMult + 10 && blue < colourMult + 10) {
-			red += Mathf.Max (colourMult, 50f);
-			green += Mathf.Max (colourMult, 50f);
-			blue += Mathf.Max (colourMult, 50f);
+		if (red < colourMult + 5 || green < colourMult + 5 || blue < colourMult + 5) {
+			red += Mathf.Max (colourMult, 10f);
+			green += Mathf.Max (colourMult, 10f);
+			blue += Mathf.Max (colourMult, 10f);
 
 		}
 
@@ -184,11 +205,6 @@ public class Player : MonoBehaviour {
 		oceanColor += color;
 
 		//hitting fish changes the colour attributes of the player representing colour which changes the smoke colour
-		/*red -= colourMult * color.r;
-		green -= colourMult * color.g;
-		blue -= colourMult * color.b;*/
-
-
 		//if we want to only remove the largest colour aspect of the fish use the below code instead of above.
 		{
 			float r = color.r, g = color.g, b = color.b;
@@ -208,32 +224,26 @@ public class Player : MonoBehaviour {
         health += healthImpact;
 		health = Mathf.Clamp(health, 0, 100);
     }
-		
-
-
-	//Method here will find the difference between colours and if unbalance is great enough, will take action
-	private void isBalanced () {
-		int colourOut;
-		//is there a colour imbalance?
-		if (Mathf.Max (red, green, blue) > Mathf.Min (red, green, blue) + difference) {
-
-			if (red < green && red < blue)
-				colourOut = 0;
-			else if (green < red && green < blue)
-				colourOut = 1;
-			else
-				colourOut = 2;
-		} else
-			return;
-
-		//Here we can spawn monsters when the colour impalance is great enough. 
-		//The colour of monster to spawn is based on the value colourOut: 0 == red, 1 == green, 2 == blue
-	}
 
 
 	//Setter method to update the time variable
 	public void setTime (int newTime) {
 		timeGoing = newTime;
+	}
+
+	//getter method to get time variable
+	public float getTime () {
+		return timeGoing;
+	}
+
+	//Setter method called when predator 'dies'
+	public void setPred1Ded () {
+		predator1 = false;
+	}
+
+	//Getter method for balance value
+	public float getBalance() {
+		return balance;
 	}
 
 	public int getMinColour () {
@@ -247,4 +257,6 @@ public class Player : MonoBehaviour {
 
 		return colourOut;
 	}
+
+
 }
