@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	public int					smokeDelay;
 
 	//Constants
-	private float 	animationDuration 	= 4.0f;
+	private float 	something 	= 4.0f;
 	public float 	buoyancy 			= 0.5f;
 	public float 	horSpeed 			= 10f;
 	public float 	verSpeed 			= 10f;
@@ -59,6 +59,8 @@ public class Player : MonoBehaviour {
 		smokeColour = new Color(1f, 1f, 1f, 1f);
 		framz = 0;
         oceanColor = new Color(0, 0, 1, 1);
+
+		something = 4f;
 
 	}
 	
@@ -117,7 +119,7 @@ public class Player : MonoBehaviour {
 		 * Restricts player from moving left and right until the camera animation is complete
 		*/
 
-		if (Time.time < animationDuration) 
+		if (timeGoing < something) 
 		{
 			controller.Move (Vector3.forward * horSpeed * Time.deltaTime);
 			return;

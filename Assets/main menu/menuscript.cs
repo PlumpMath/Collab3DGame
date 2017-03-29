@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class menuscript : MonoBehaviour {
 
@@ -37,7 +38,8 @@ public class menuscript : MonoBehaviour {
 
     public void StartLevel(string name)
     {
-        Application.LoadLevel (name);
+        //Application.LoadLevel (name);
+		SceneManager.LoadScene (name);
     }
 
     public void ExitGame()
