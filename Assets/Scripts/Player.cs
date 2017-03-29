@@ -68,13 +68,15 @@ public class Player : MonoBehaviour {
 		//See if second has gone by and remove health if yes
 		if (timeGoing > lastTime) {
 			lastTime = timeGoing;
-			health--;
+			health -= 2;
 			if (timeGoing % 10 == 0) {
 				horSpeed ++;
 			}
 		}
 
 
+		//Update oceanColour to be the most needed colour by the player
+		oceanColor = Vector4.Lerp(oceanColor, getMaxColourVal(), 0.1f);
 
 
 		//Update balance of colours
@@ -144,8 +146,6 @@ public class Player : MonoBehaviour {
 		*/
 		moveVector.y = Input.GetAxis("Vertical") * verSpeed;
 
-
-
 		if (controller.isGrounded) 
 		{
 			verticalVelocity = 0f;
@@ -170,7 +170,7 @@ public class Player : MonoBehaviour {
 		positionVector 		= transform.position;
 		//Not Needed now
 		//positionVector.x 	= Mathf.Clamp (positionVector.x, minWidth, maxWidth);
-		positionVector.y 	= Mathf.Clamp (positionVector.y, -30f, 30f);
+		positionVector.y 	= Mathf.Clamp (positionVector.y, -50f, 12f);
 		transform.position	= positionVector;
 
 
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour {
         //#warning All of this needs to be updated so health is shown by number of bubbles instead of fade
         //smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
 
-        #warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
+        //#warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
         //Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
 
 		smokeDelay = (int)((100 - health) / 10);
@@ -202,7 +202,7 @@ public class Player : MonoBehaviour {
     {
 		//Debug.Log (color.r + " " + color.g + " " + color.b + " ");
 
-		oceanColor += color;
+		//oceanColor += color;
 
 		//hitting fish changes the colour attributes of the player representing colour which changes the smoke colour
 		//if we want to only remove the largest colour aspect of the fish use the below code instead of above.
@@ -246,6 +246,7 @@ public class Player : MonoBehaviour {
 		return balance;
 	}
 
+	//returns the smallest colour value. 0 == red, 1 == green, 2 == blue
 	public int getMinColour () {
 		int colourOut;
 		if (red < green && red < blue)
@@ -256,6 +257,16 @@ public class Player : MonoBehaviour {
 			colourOut = 2;
 
 		return colourOut;
+	}
+
+	//returns the largest colour.
+	public Vector4 getMaxColourVal () {
+		if (red > green && red > blue)
+			return new Vector4 (.9f, 0f, .1f, 1f);
+		else if (green > red && green > blue)
+			return new Vector4 (0f, .9f, .1f, 1f);
+		else
+			return new Vector4 (0f, 0f, 1f, 1f);
 	}
 
 
