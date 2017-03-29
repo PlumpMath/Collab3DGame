@@ -26,7 +26,7 @@ public class TileManager : MonoBehaviour {
 		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		spawner         = gameObject.GetComponent<NewTile> ();
 		tiles           = new GameObject[15];
-        fishes          = new GameObject[15];
+       
 
         //Spawning Initial tile prefabs
         for (int i = 0; i < tilesConstant; i++) 

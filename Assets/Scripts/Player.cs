@@ -144,8 +144,6 @@ public class Player : MonoBehaviour {
 		*/
 		moveVector.y = Input.GetAxis("Vertical") * verSpeed;
 
-
-
 		if (controller.isGrounded) 
 		{
 			verticalVelocity = 0f;
@@ -170,7 +168,7 @@ public class Player : MonoBehaviour {
 		positionVector 		= transform.position;
 		//Not Needed now
 		//positionVector.x 	= Mathf.Clamp (positionVector.x, minWidth, maxWidth);
-		positionVector.y 	= Mathf.Clamp (positionVector.y, -30f, 30f);
+		positionVector.y 	= Mathf.Clamp (positionVector.y, -50f, 12f);
 		transform.position	= positionVector;
 
 
@@ -181,7 +179,7 @@ public class Player : MonoBehaviour {
         //#warning All of this needs to be updated so health is shown by number of bubbles instead of fade
         //smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
 
-        #warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
+        //#warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
         //Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
 
 		smokeDelay = (int)((100 - health) / 10);
