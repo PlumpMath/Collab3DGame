@@ -75,6 +75,8 @@ public class Player : MonoBehaviour {
 		}
 
 
+		//Update oceanColour to be the most needed colour by the player
+		oceanColor = Vector4.Lerp(oceanColor, getMaxColourVal(), 0.1f);
 
 
 		//Update balance of colours
@@ -200,7 +202,7 @@ public class Player : MonoBehaviour {
     {
 		//Debug.Log (color.r + " " + color.g + " " + color.b + " ");
 
-		oceanColor += color;
+		//oceanColor += color;
 
 		//hitting fish changes the colour attributes of the player representing colour which changes the smoke colour
 		//if we want to only remove the largest colour aspect of the fish use the below code instead of above.
@@ -244,6 +246,7 @@ public class Player : MonoBehaviour {
 		return balance;
 	}
 
+	//returns the smallest colour value. 0 == red, 1 == green, 2 == blue
 	public int getMinColour () {
 		int colourOut;
 		if (red < green && red < blue)
@@ -254,6 +257,16 @@ public class Player : MonoBehaviour {
 			colourOut = 2;
 
 		return colourOut;
+	}
+
+	//returns the largest colour.
+	public Vector4 getMaxColourVal () {
+		if (red > green && red > blue)
+			return new Vector4 (.9f, 0f, .1f, 1f);
+		else if (green > red && green > blue)
+			return new Vector4 (0f, .9f, .1f, 1f);
+		else
+			return new Vector4 (0f, 0f, 1f, 1f);
 	}
 
 
