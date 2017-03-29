@@ -44,6 +44,7 @@ public class NewTile : MonoBehaviour {
 
 		//Parent of fish is the tile
 		go.transform.parent = tile;
+   
 
 		//Set fish colour based on paramaters or difficulty.
 
@@ -57,7 +58,7 @@ public class NewTile : MonoBehaviour {
 				go.GetComponent<SpawnedFish> ().setColour (Color.blue);
 		}
 
-		go.transform.position = new Vector3(0, Random.Range(-5f, 8f), Random.Range(-75f, 75f));
+		go.transform.position = new Vector3(10, Random.Range(-5f, 8f), Random.Range(-75f, 75f));
     }
 
     private void SpawnCoral(Transform tile, bool hard)
