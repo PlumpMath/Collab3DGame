@@ -29,8 +29,8 @@ public class Player : MonoBehaviour {
 	public float 	horSpeed 			= 10f;
 	public float 	verSpeed 			= 10f;
 	private float 	verticalVelocity	= 0f;
-	public float 	minWidth			= 0f;
-	public float 	maxWidth			= 10f;
+	public float 	minHeight			= -20f;
+	public float 	maxHeight			= 0f;
     public float 	health				= 100f;
 	public float 	colourMult			= 10;
 	//private int 	difficulty			= 30;
@@ -170,7 +170,7 @@ public class Player : MonoBehaviour {
 		positionVector 		= transform.position;
 		//Not Needed now
 		//positionVector.x 	= Mathf.Clamp (positionVector.x, minWidth, maxWidth);
-		positionVector.y 	= Mathf.Clamp (positionVector.y, minWidth, 2*maxWidth);
+		positionVector.y 	= Mathf.Clamp (positionVector.y, -30f, 30f);
 		transform.position	= positionVector;
 
 
