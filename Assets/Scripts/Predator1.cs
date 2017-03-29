@@ -10,8 +10,12 @@ public class Predator1 : MonoBehaviour {
 	private Color   	fishColor;
 	private GameObject  player;
 	private Player 		playerScript;
-	private float     	health;
 	private int 		difference;
+	private int distance = 5;
+	private float timeStart;
+	private float timeNow;
+	private float prevBalance;
+	private float balance;
 
 
 	void Start () {
@@ -19,9 +23,17 @@ public class Predator1 : MonoBehaviour {
 		player = GameObject.Find("Player");
 		playerScript = player.GetComponent<Player> ();
 
-		fishColor                               = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+		//set colour of predator to min colour aspect of player
+		setColour ();
+
+		//set start colour
+		timeStart = playerScript.getTime();
+		timeNow = playerScript.getTime();
+
+		//set start balance
+		balance = playerScript.getBalance ();
+
 		GetComponent<Renderer>().material.color = fishColor;
-		health =  Random.Range(10f, 20f);
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -36,13 +48,40 @@ public class Predator1 : MonoBehaviour {
 
 	}
 
-	//setter Method for fish colour.
-	public void setColour(Color colour){
-		fishColor = colour;
+	//setter Method for predator colour.
+	public void setColour(){
+		int c = playerScript.getMinColour ();
+		if (c == 0)
+			fishColor = Color.red;
+		else if (c == 1)
+			fishColor = Color.green;
+		else
+			fishColor = Color.blue;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		difference = playerScript.difference;
+		//undate time
+		timeNow += Time.deltaTime;
+
+		//undate balance
+		prevBalance = balance;
+		balance = playerScript.getBalance ();
+
+		//check if colour was brought back to balance
+		if (balance < prevBalance)
+			timeStart += 25f;
+
+		Vector3 goal = player.transform.position;
+		goal.z -= distance/(timeNow-timeStart);
+
+
+		transform.position = Vector3.Lerp (transform.position, goal, .04f);
 	}
+
+	public void DestroyPred() {
+		playerScript.setPred1Ded ();
+		Destroy (gameObject);
+	}
+
 }
