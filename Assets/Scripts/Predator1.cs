@@ -11,12 +11,12 @@ public class Predator1 : MonoBehaviour {
 	private GameObject  player;
 	private Player 		playerScript;
 	private int 		difference;
-	private int distance = 5;
-	private float timeStart;
-	private float timeNow;
-	private float prevBalance;
-	private float balance;
-	private float beta;
+	private float 		distance = 10f;
+	private float 		timeStart;
+	private float 		timeNow;
+	private float 		prevBalance;
+	private float 		balance;
+	private float 		beta;
 
 
 	void Start () {
@@ -81,13 +81,13 @@ public class Predator1 : MonoBehaviour {
 			//timeStart += 25f;
 
 		Vector3 goal = player.transform.position;
-		goal.z -= (-0.6f * (timeNow - timeStart) + 10f);
+		goal.z -= (-0.6f * (timeNow - timeStart) + distance);
 
 
 		transform.position = Vector3.Lerp (transform.position, goal, beta);
 
 		//if predator gets close enough to bite
-		if ((player.transform.position - transform.position).magnitude < 2) {
+		if ((player.transform.position - transform.position).magnitude < 3) {
 			playerScript.red = 100;
 			playerScript.green = 100;
 			playerScript.blue = 100;
