@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class TileManager : MonoBehaviour {
     private Transform playerTransform;
 	private GameObject player;
 	public NewTile spawner;
+	public Text score;
 
     //Constants
     private float playerTilePosition	= 0;
@@ -47,6 +49,8 @@ public class TileManager : MonoBehaviour {
 		time += Time.deltaTime;
 		//Push time in seconds to player
 		player.GetComponent<Player>().setTime((int)Mathf.Floor(time));
+		//Update score with current time alive
+		score.text = "Time Alive: " + (int)Mathf.Floor(time);
 
 
 		playerTilePosition = spawnZ - (tilesConstant * tileLength);
