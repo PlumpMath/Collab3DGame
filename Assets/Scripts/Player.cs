@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
 		//See if second has gone by and remove health if yes
 		if (timeGoing > lastTime) {
 			lastTime = timeGoing;
-			health--;
+			health -= 2;
 			if (timeGoing % 10 == 0) {
 				horSpeed ++;
 			}
