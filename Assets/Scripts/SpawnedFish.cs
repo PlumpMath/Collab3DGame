@@ -8,6 +8,8 @@ public class SpawnedFish : MonoBehaviour {
 
 	private Color   	fishColor;
     private Player  	Player;
+
+    public GameObject eat;
     private float     	health;
  
 
@@ -26,7 +28,8 @@ public class SpawnedFish : MonoBehaviour {
             Player Player = other.GetComponent<Player>();
             Player.EatFishColor(fishColor);
             Player.AffectHealth(health);
-			Destroy (gameObject);
+            var ate = Instantiate(eat, transform.position, transform.rotation);
+            Destroy (gameObject);
         }
        
 
