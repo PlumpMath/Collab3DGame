@@ -284,9 +284,17 @@ public class Player : MonoBehaviour {
 
 	//method to remove lives
 	public void removeLife () {
+		//Move player to center of screen
 		Vector3 temp = transform.position;
 		temp.y = -12f;
 		transform.position = temp;
+
+		//Reset colour balance to 100, 100, 100
+		red = 100f;
+		green = 100f;
+		blue = 100f;
+
+		//remove one life
 		lives--;
 	}
 

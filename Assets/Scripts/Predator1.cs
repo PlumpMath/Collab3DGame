@@ -45,8 +45,8 @@ public class Predator1 : MonoBehaviour {
 
 		if (other.tag == "Player")
 		{
-
-
+			playerScript.removeLife ();
+			DestroyPred ();
 		}
 
 
