@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 	public int					smokeDelay;
 
 	//Constants
-	private float 	something 			= 4.0f;
+	private float 	something 			= 20.0f;
 	public float 	buoyancy 			= 0.5f;
 	public float 	horSpeed 			= 10f;
 	public float 	verSpeed 			= 10f;
@@ -134,6 +134,30 @@ public class Player : MonoBehaviour {
 		//testing colour change --> it works
 		//smokeColour = Random.ColorHSV();
 
+		//Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
+		smokeColour = new Color(red/100f, green/100f, blue/100f, 1f);
+
+		//If health will effect the alpha, comment out above line and use the one below
+		//#warning All of this needs to be updated so health is shown by number of bubbles instead of fade
+		//smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
+
+		//#warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
+		//Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
+
+		smokeDelay = (int)((100 - health) / 10);
+		smokeDelay = Mathf.Clamp (smokeDelay, 1, 10);
+		//A higher number means less smoke/bubbles
+		if (framz > smokeDelay) {
+			var emitParams = new ParticleSystem.EmitParams ();
+			//Debug.Log (emitParams.position);
+			emitParams.startColor = smokeColour;
+			smoke.Emit (emitParams, 1);
+			framz = 0;
+		}
+		framz++;
+
+
+
 		/*
 		 * Restricts player from moving left and right until the camera animation is complete
 		*/
@@ -199,27 +223,7 @@ public class Player : MonoBehaviour {
 			removeLife ();
 
 
-        //Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
-        smokeColour = new Color(red/100f, green/100f, blue/100f, 1f);
-
-        //If health will effect the alpha, comment out above line and use the one below
-        //#warning All of this needs to be updated so health is shown by number of bubbles instead of fade
-        //smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
-
-        //#warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
-        //Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
-
-		smokeDelay = (int)((100 - health) / 10);
-		smokeDelay = Mathf.Clamp (smokeDelay, 1, 10);
-        //A higher number means less smoke/bubbles
-        if (framz > smokeDelay) {
-			var emitParams = new ParticleSystem.EmitParams ();
-			//Debug.Log (emitParams.position);
-			emitParams.startColor = smokeColour;
-			smoke.Emit (emitParams, 1);
-			framz = 0;
-		}
-		framz++;
+        
 		
 	}
 

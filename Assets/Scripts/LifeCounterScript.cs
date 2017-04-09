@@ -20,7 +20,8 @@ public class LifeCounterScript : MonoBehaviour {
 		var temp = Instantiate (lifeCounter);
 		temp.transform.parent = player.transform;
 		Vector3 pos = temp.transform.position;
-		pos.y -= num * 2;
+		pos.z -= num * 2;
+		temp.transform.position = pos;
 
 		return temp;
 	}
