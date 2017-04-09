@@ -72,6 +72,9 @@ public class Player : MonoBehaviour {
 		//set lives
 		lives = startLives;
 
+		//update life counter
+		showLives();
+
 	}
 	
 	private void Update () 
@@ -309,6 +312,9 @@ public class Player : MonoBehaviour {
 
 		//remove one life
 		lives--;
+
+		//update life counter
+		showLives();
 	}
 
 	//Method to display lives
@@ -318,8 +324,11 @@ public class Player : MonoBehaviour {
 				if (livesArray [i] == null)
 					livesArray [i] = Instantiate (lifeCounter);
 			}
-			else
+			else {
+				if (livesArray [i] != null)
+					Destroy (livesArray [i]);
 				livesArray [i] = null;
+			}		
 		}
 	}
 
