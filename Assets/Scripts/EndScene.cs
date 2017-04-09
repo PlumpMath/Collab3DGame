@@ -36,6 +36,7 @@ public class EndScene : MonoBehaviour {
 		if (scoreNum > highScoreNum) {
 			highScore.text = "NEW HIGHSCORE!!!";
 			PlayerPrefs.SetInt ("highScore", scoreNum);
+		}
 		else
 			highScore.text = "";
 	}

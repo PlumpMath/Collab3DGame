@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 	public int					smokeDelay;
 
 	//Constants
-	private float 	something 	= 4.0f;
+	private float 	something 			= 4.0f;
 	public float 	buoyancy 			= 0.5f;
 	public float 	horSpeed 			= 10f;
 	public float 	verSpeed 			= 10f;
@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
 	public float 	maxHeight			= 0f;
     public float 	health				= 100f;
 	public float 	colourMult			= 10;
+	private int 	lives 				= 3;
 	//private int 	difficulty			= 30;
 
 	//Predator Spawns
@@ -67,6 +68,10 @@ public class Player : MonoBehaviour {
 	
 	private void Update () 
 	{
+		//check to see if all lives have been lost
+		if (lives < 1)
+			resetLevel ();
+
 
 		//See if second has gone by and remove health if yes
 		if (timeGoing > lastTime) {
@@ -176,6 +181,10 @@ public class Player : MonoBehaviour {
 		positionVector.y 	= Mathf.Clamp (positionVector.y, -50f, 12f);
 		transform.position	= positionVector;
 
+		//check if player has fallen below the screen
+		if (positionVector.y < -39f)
+			removeLife ();
+
 
         //Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
         smokeColour = new Color(red/100f, green/100f, blue/100f, 1f);
@@ -272,6 +281,14 @@ public class Player : MonoBehaviour {
 			return new Vector4 (0f, 0f, 1f, 1f);
 	}
 
+
+	//method to remove lives
+	public void removeLife () {
+		Vector3 temp = transform.position;
+		temp.y = -12f;
+		transform.position = temp;
+		lives--;
+	}
 
 	//reset method to restart round when deded
 	public void resetLevel () {
