@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     //comment graham branch
@@ -270,6 +271,15 @@ public class Player : MonoBehaviour {
 		else
 			return new Vector4 (0f, 0f, 1f, 1f);
 	}
+
+
+	//reset method to restart round when deded
+	public void resetLevel () {
+		PlayerPrefs.SetInt ("score", timeGoing);
+		SceneManager.LoadScene ("Reset");
+	}
+
+
 
 
 }

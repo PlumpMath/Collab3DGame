@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndScene : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class EndScene : MonoBehaviour {
 
 	private int scoreNum;
 	private int highScoreNum;
+
+	public Button menuButton;
 
 
 
@@ -30,9 +33,15 @@ public class EndScene : MonoBehaviour {
 		score.text = "Score: " + scoreNum;
 
 		//if it is a new highscore say so, else don't
-		if (scoreNum > highScoreNum)
+		if (scoreNum > highScoreNum) {
 			highScore.text = "NEW HIGHSCORE!!!";
+			PlayerPrefs.SetInt ("highScore", scoreNum);
 		else
 			highScore.text = "";
 	}
+
+	public void goToMenu() {
+		SceneManager.LoadScene ("main");
+	}
+
 }
