@@ -40,18 +40,6 @@ public class Predator1 : MonoBehaviour {
 		GetComponent<Renderer>().material.color = fishColor;
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-
-		if (other.tag == "Player")
-		{
-			playerScript.removeLife ();
-			DestroyPred ();
-		}
-
-
-	}
-
 	//setter Method for predator colour.
 	public void setColour(){
 		int c = playerScript.getMinColour ();
@@ -81,16 +69,15 @@ public class Predator1 : MonoBehaviour {
 			//timeStart += 25f;
 
 		Vector3 goal = player.transform.position;
-		goal.z -= (-0.6f * (timeNow - timeStart) + distance);
+		goal.z -= (-0.9f * (timeNow - timeStart) + distance);
 
 
 		transform.position = Vector3.Lerp (transform.position, goal, beta);
 
 		//if predator gets close enough to bite
-		if ((player.transform.position - transform.position).magnitude < 3) {
-			playerScript.red = 100;
-			playerScript.green = 100;
-			playerScript.blue = 100;
+		if ((player.transform.position - transform.position).magnitude < 6) {
+			playerScript.removeLife ();
+			DestroyPred ();
 		}
 	}
 
