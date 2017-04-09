@@ -322,7 +322,7 @@ public class Player : MonoBehaviour {
 		for (int i = 0; i < startLives; i++) {
 			if (i < lives) {
 				if (livesArray [i] == null)
-					livesArray [i] = Instantiate (lifeCounter);
+					livesArray [i] = GetComponent<LifeCounterScript> ().spawnLife (i);
 			}
 			else {
 				if (livesArray [i] != null)
