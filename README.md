@@ -10,12 +10,20 @@ What is it?
 > - Skills gained: 
 
 ### Todos
-- Obstacles in the way (fish hooks and like)
+- Obstacles in the way (fish hooks and like) 
+- Report for April 11
 - Reskin fish
 - Fix animations
 - Display lives onscreen
-- Add background to main menu
+- Add background to main menu - BG
 - get options menu working (Graham)
+- Normal expansion shader - BG
+- Fog shader-BG
+- Coral background upgrade - BG
+- Background fish - BG
+- Seaweed stuffz - BG
+- Powerups (Speed boost, reset colour, slow mo)
+- Make feeling of immediate danger - Add thrill factor
 - ... (Add more here)
 
 ### Quick Start
