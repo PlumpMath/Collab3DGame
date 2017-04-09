@@ -4,12 +4,19 @@ CSC 205 Group Project: Untitled
 What is it?
 -------------
 
-
 > **Note:**
 
 > - Final Project for CSC 205 2017 Spring
 > - Skills gained: 
 
+### Todos
+- Obstacles in the way (fish hooks and like)
+- Reskin fish
+- Fix animations
+- Display lives onscreen
+- Add background to main menu
+- get options menu working (Graham)
+- ... (Add more here)
 
 ### Quick Start
 
