@@ -14,7 +14,7 @@ What is it?
 - Report for April 11
 - Reskin fish
 - Fix animations
-- Display lives onscreen
+- Change texture for on screen counter
 - Add background to main menu - BG
 - get options menu working (Graham)
 - Normal expansion shader - BG
