@@ -34,7 +34,6 @@ public class Player : MonoBehaviour {
 	public float 	maxHeight			= 0f;
     public float 	health				= 100f;
 	public float 	colourMult			= 10;
-	private int 	lives 				= 3;
 	//private int 	difficulty			= 30;
 
 	//Predator Spawns
@@ -42,6 +41,12 @@ public class Player : MonoBehaviour {
 	private float 		balance 	= 0f;
 	private GameObject 	predator;
 	public GameObject 	predPrefab;
+
+	//Life counter
+	private int startLives = 3;
+	private int lives;
+	public GameObject lifeCounter;
+	private GameObject[] livesArray = new GameObject[3];
 
 
 
@@ -64,6 +69,9 @@ public class Player : MonoBehaviour {
 
 		something = 4f;
 
+		//set lives
+		lives = startLives;
+
 	}
 	
 	private void Update () 
@@ -71,7 +79,9 @@ public class Player : MonoBehaviour {
 		//check to see if all lives have been lost
 		if (lives < 1)
 			resetLevel ();
-
+		//if health is less then 1 lose a life
+		if (health < 1)
+			removeLife ();
 
 		//See if second has gone by and remove health if yes
 		if (timeGoing > lastTime) {
@@ -294,8 +304,23 @@ public class Player : MonoBehaviour {
 		green = 100f;
 		blue = 100f;
 
+		//Reset health to 100
+		health = 100;
+
 		//remove one life
 		lives--;
+	}
+
+	//Method to display lives
+	public void showLives () {
+		for (int i = 0; i < startLives; i++) {
+			if (i < lives) {
+				if (livesArray [i] == null)
+					livesArray [i] = Instantiate (lifeCounter);
+			}
+			else
+				livesArray [i] = null;
+		}
 	}
 
 	//reset method to restart round when deded
