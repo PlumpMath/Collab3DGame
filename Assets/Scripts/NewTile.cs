@@ -7,6 +7,7 @@ public class NewTile : MonoBehaviour {
 	public GameObject tilePrefab;
     public GameObject fishPrefab;
 	public GameObject fishHook;
+    public GameObject seaweed;
 	private GameObject player;
 
     // Use this for initialization
@@ -35,7 +36,13 @@ public class NewTile : MonoBehaviour {
 			for (int i = 0; i < 3; i++) {
 				SpawnFishHooks(go.transform);
 			}
-		}
+
+            //Spawn seaweed
+            for (int i = 0; i < 30; i++)
+            {
+                SpawnSeaweed(go.transform);
+            }
+        }
 
 
 
@@ -84,9 +91,18 @@ public class NewTile : MonoBehaviour {
 		go.transform.position = new Vector3(10, Random.Range(-30f, 7f), Random.Range(-100f, 100f));
     }
 
-    private void SpawnSeaweed(Transform tile, bool hard)
+    private void SpawnSeaweed(Transform tile)
     {
-        #warning Implement SpawnSeaweed method
+        GameObject go = Instantiate(seaweed) as GameObject;
+
+        Renderer renderer = go.GetComponent<Renderer>();
+        Material mat = renderer.material;
+
+        mat.SetFloat("_Offset", Random.Range(0f, 20f));
+
+        go.transform.parent = tile;
+
+        go.transform.position = new Vector3(10, Random.Range(-60f, -50f), Random.Range(-100f, 100f));
     }
 
 }

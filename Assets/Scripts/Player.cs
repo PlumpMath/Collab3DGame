@@ -48,6 +48,9 @@ public class Player : MonoBehaviour {
 	public GameObject lifeCounter;
 	private GameObject[] livesArray = new GameObject[3];
 
+    //Sound after kia
+    public GameObject deathAudio;
+
 
 
     private void Start () 
@@ -324,6 +327,10 @@ public class Player : MonoBehaviour {
 
 		//update life counter
 		showLives();
+
+        GameObject death = Instantiate(deathAudio);
+        death.transform.parent = this.transform;
+
 	}
 
 	//Method to display lives
