@@ -17,6 +17,8 @@ public class Predator1 : MonoBehaviour {
 	private float 		prevBalance;
 	private float 		balance;
 	private float 		beta;
+	private bool 		leave;
+	private Vector3 	destination;
 
 
 	void Start () {
@@ -53,6 +55,12 @@ public class Predator1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (leave) {
+			Vector3 temp = Vector3.Lerp (transform.position, destination, 0.01f);
+			transform.position = temp;
+			return;
+		}
+
 		//undate time
 		timeNow += Time.deltaTime;
 
@@ -83,7 +91,10 @@ public class Predator1 : MonoBehaviour {
 
 	public void DestroyPred() {
 		playerScript.setPred1Ded ();
-		Destroy (gameObject);
+		destination = transform.position;
+		destination.z -= 100f;
+		leave = true;
+		Destroy (gameObject, 3f);
 	}
 
 }
