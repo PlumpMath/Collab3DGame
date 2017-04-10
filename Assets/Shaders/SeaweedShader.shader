@@ -1,23 +1,24 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Custom/SeaweedShader"
+﻿Shader "Custom/SeaweedShader"
 {
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_Speed ("Speed", Range(0,10)) = 0.5
+		_Amplitude ("Amplitude", Range(0,10)) = 0.0
 	}
 	SubShader
 	{
 		Tags { "RenderType"="Opaque" }
-		LOD 100
 
 		Pass
 		{
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			// make fog work
-			#pragma multi_compile_fog
+
+			float _Amplitude;
+			float _Speed;
+		
 			
 			#include "UnityCG.cginc"
 
@@ -30,7 +31,6 @@ Shader "Custom/SeaweedShader"
 			struct v2f
 			{
 				float2 uv : TEXCOORD0;
-				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
 
@@ -39,16 +39,20 @@ Shader "Custom/SeaweedShader"
 			
 			v2f vert (appdata v)
 			{
-				return UnityObjectToClipPos (v);
+				v2f o;
+				o.vertex = UnityObjectToClipPos(v.vertex);
 
+				float	_PhaseShift	= 1*_Time[1];
+				float2	_SineWave	= _Amplitude* sin((o.vertex.x) + _Speed*_PhaseShift);
+
+				o.vertex.x += _SineWave;
+				return o;
 			}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
-				// apply fog
-				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
 			}
 			ENDCG
