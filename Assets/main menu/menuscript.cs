@@ -21,19 +21,22 @@ public class menuscript : MonoBehaviour {
 
     }
 
+    //show exit menu
     public void ExitPress()
     {
         quitMenu.enabled = true;
         startText.enabled = false;
+        optionsText.enabled = false;
         exitText.enabled = false;
 
     }
 
-
+    //close exit menu
     public void noPress()
     {
         quitMenu.enabled = false;
         startText.enabled = true;
+        optionsText.enabled = true;
         exitText.enabled = true;
 
     }
