@@ -13,6 +13,7 @@ public class menuscript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //set up buttons
         quitMenu = quitMenu.GetComponent<Canvas>();
         startText = quitMenu.GetComponent<Button>();
         optionsText = quitMenu.GetComponent<Button>();
@@ -52,7 +53,7 @@ public class menuscript : MonoBehaviour {
         //Application.LoadLevel (name);
         SceneManager.LoadScene(name);
     }
-
+    //quit the game
     public void ExitGame()
     {
         Application.Quit ();

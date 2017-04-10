@@ -79,8 +79,10 @@ public class Player : MonoBehaviour {
 	
 	private void Update () 
 	{
-		//check to see if all lives have been lost
-		if (lives < 1)
+        
+
+        //check to see if all lives have been lost
+        if (lives < 1)
 			resetLevel ();
 		//if health is less then 1 lose a life
 		if (health < 1)

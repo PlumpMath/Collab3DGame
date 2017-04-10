@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class optionssc : MonoBehaviour {
-
+    //set up all of the options
     public Toggle fullT;
     public Dropdown ResolutionD;
     public Dropdown TextureD;
@@ -15,8 +15,11 @@ public class optionssc : MonoBehaviour {
     public Slider MusicVol;
     public Button done;
 
+    //music
     public AudioSource musicScource;
+    public AudioSource musicScource1;
 
+    //resolution array
     public Resolution[] resolutions;
     public gamesettings gameset;
 
@@ -24,6 +27,7 @@ public class optionssc : MonoBehaviour {
     {
         gameset = new gamesettings();
 
+        //call code on change fo options
         fullT.onValueChanged.AddListener(delegate { onFull(); });
         ResolutionD.onValueChanged.AddListener(delegate { OnresChange(); });
         TextureD.onValueChanged.AddListener(delegate { OntextureChange(); });
@@ -42,34 +46,38 @@ public class optionssc : MonoBehaviour {
 
     public void onFull()
     {
+        //set full screen
         gameset.fullscreen = Screen.fullScreen = fullT.isOn;
     }
-
+    //set resolution
     public void OnresChange()
     {
         Screen.SetResolution(resolutions[ResolutionD.value].width, resolutions[ResolutionD.value].height, Screen.fullScreen);
         gameset.resolution = ResolutionD.value;
     }
-
+    //set texture
     public void OntextureChange()
     {
         QualitySettings.masterTextureLimit = gameset.TexttureQuality = TextureD.value;
 
     }
-
+    // set antialiasing
     public void OnAAChange()
     {
         QualitySettings.antiAliasing = gameset.antia = (int)Mathf.Pow(2f, antiaDrop.value);
     }
+    //set vsink
     public void OnvsinkChange()
     {
         QualitySettings.vSyncCount = gameset.vsink = VDrop.value;
     }
+    //set music
     public void OnmusicvolChange()
     {
         musicScource.volume = gameset.music = MusicVol.value;
+        musicScource1.volume = gameset.music = MusicVol.value;
     }
-
+    //save setting in json file
     public void onapplybuttonclick()
     {
         saveSettings();
@@ -80,6 +88,7 @@ public class optionssc : MonoBehaviour {
         string jsonData = JsonUtility.ToJson(gameset, true);
         File.WriteAllText(Application.persistentDataPath + "/gamesettings.json", jsonData);
     }
+   // Load the settings from the previous game
     public void loadSettings()
     {
         gameset = JsonUtility.FromJson<gamesettings>(File.ReadAllText(Application.persistentDataPath + "/gamesettings.json"));
