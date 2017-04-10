@@ -201,8 +201,12 @@ public class Player : MonoBehaviour {
 		transform.position	= positionVector;
 
 		//check if player has fallen below the screen
-		if (positionVector.y < -39f)
+		if (positionVector.y < -39f) {
+			Vector3 temp = transform.position;
+			temp.y = -12f;
+			transform.position = temp;
 			removeLife ();
+		}
 
         //Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
         smokeColour = new Color(red / 100f, green / 100f, blue / 100f, 1f);
@@ -305,10 +309,7 @@ public class Player : MonoBehaviour {
 
 	//method to remove lives
 	public void removeLife () {
-		//Move player to center of screen
-		Vector3 temp = transform.position;
-		temp.y = -12f;
-		transform.position = temp;
+
 
 		//Reset colour balance to 100, 100, 100
 		red = 100f;

@@ -6,6 +6,7 @@ public class NewTile : MonoBehaviour {
 
 	public GameObject tilePrefab;
     public GameObject fishPrefab;
+	public GameObject fishHook;
 	private GameObject player;
 
     // Use this for initialization
@@ -29,7 +30,14 @@ public class NewTile : MonoBehaviour {
 				else
 					SpawnFish (go.transform, false);
 			}
+
+			//Spawn fish hooks
+			for (int i = 0; i < 3; i++) {
+				SpawnFishHooks(go.transform);
+			}
 		}
+
+
 
         //Implement Background Object Spawning
         #warning Call background object spawning methods with random frequency
@@ -66,9 +74,14 @@ public class NewTile : MonoBehaviour {
         #warning Implement SpawnCoral method
     }
 
-    private void SpawnFishHooks(Transform tile, bool hard)
-    {
-        #warning Implement SpawnFishHooks method
+    private void SpawnFishHooks(Transform tile) {
+		GameObject go = Instantiate (fishHook) as GameObject;
+
+		//Make tile parent of hook
+		go.transform.parent = tile;
+
+		//Set position of hook
+		go.transform.position = new Vector3(10, Random.Range(-30f, 7f), Random.Range(-100f, 100f));
     }
 
     private void SpawnSeaweed(Transform tile, bool hard)
