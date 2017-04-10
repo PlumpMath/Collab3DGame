@@ -9,7 +9,7 @@ public class SpawnedFish : MonoBehaviour {
 	private Color   	fishColor;
     private Player  	Player;
 
-    public GameObject eat;
+    public GameObject 	eat;
     private float     	health;
  
 
