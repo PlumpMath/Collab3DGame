@@ -4,7 +4,8 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_Speed ("Speed", Range(0,10)) = 0.5
-		_Amplitude ("Amplitude", Range(0,10)) = 0.0
+		_Amplitude ("Amplitude", Range(0,10)) = 1.0
+		_Frequency ("Frequency", Range(0,1)) = 0.3
 	}
 	SubShader
 	{
@@ -18,6 +19,7 @@
 
 			float _Amplitude;
 			float _Speed;
+			float _Frequency;
 		
 			
 			#include "UnityCG.cginc"
@@ -41,9 +43,9 @@
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-
+ 
 				float	_PhaseShift	= 1*_Time[1];
-				float2	_SineWave	= _Amplitude* sin((o.vertex.x) + _Speed*_PhaseShift);
+				float2	_SineWave	= _Amplitude* sin((_Frequency* o.vertex.y) + _Speed*_PhaseShift);
 
 				o.vertex.x += _SineWave;
 				return o;
