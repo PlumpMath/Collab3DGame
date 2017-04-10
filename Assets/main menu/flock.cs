@@ -18,6 +18,7 @@ public class flock : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //keep them inside tank
         if(Vector3.Distance(transform.position,Vector3.zero) >= globalflock.tankSize)
         {
             turning = true;
@@ -43,6 +44,7 @@ public class flock : MonoBehaviour {
 	}
     void ApplyR()
     {
+        //flocking
         GameObject[] gos;
         gos = globalflock.allFish;
 
@@ -54,6 +56,7 @@ public class flock : MonoBehaviour {
         float dist;
 
         int Gsize = 0;
+        //check against other fish
         foreach(GameObject go in gos)
         {
             if(go != this.gameObject){
@@ -72,6 +75,7 @@ public class flock : MonoBehaviour {
                 }
             }
         }
+        //set in the right direction
         if(Gsize > 0)
         {
             vcenter = vcenter / Gsize + (goal - this.transform.position);

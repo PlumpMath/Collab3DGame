@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 	public int					smokeDelay;
 
 	//Constants
-	private float 	something 			= 4.0f;
+	private float 	something 			= 20.0f;
 	public float 	buoyancy 			= 0.5f;
 	public float 	horSpeed 			= 10f;
 	public float 	verSpeed 			= 10f;
@@ -34,7 +34,6 @@ public class Player : MonoBehaviour {
 	public float 	maxHeight			= 0f;
     public float 	health				= 100f;
 	public float 	colourMult			= 10;
-	private int 	lives 				= 3;
 	//private int 	difficulty			= 30;
 
 	//Predator Spawns
@@ -42,6 +41,12 @@ public class Player : MonoBehaviour {
 	private float 		balance 	= 0f;
 	private GameObject 	predator;
 	public GameObject 	predPrefab;
+
+	//Life counter
+	private int startLives = 3;
+	private int lives;
+	public GameObject lifeCounter;
+	private GameObject[] livesArray = new GameObject[3];
 
 
 
@@ -64,14 +69,24 @@ public class Player : MonoBehaviour {
 
 		something = 4f;
 
+		//set lives
+		lives = startLives;
+
+		//update life counter
+		showLives();
+
 	}
 	
 	private void Update () 
 	{
-		//check to see if all lives have been lost
-		if (lives < 1)
-			resetLevel ();
+        
 
+        //check to see if all lives have been lost
+        if (lives < 1)
+			resetLevel ();
+		//if health is less then 1 lose a life
+		if (health < 1)
+			removeLife ();
 
 		//See if second has gone by and remove health if yes
 		if (timeGoing > lastTime) {
@@ -120,6 +135,30 @@ public class Player : MonoBehaviour {
 
 		//testing colour change --> it works
 		//smokeColour = Random.ColorHSV();
+
+		//Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
+		smokeColour = new Color(red/100f, green/100f, blue/100f, 1f);
+
+		//If health will effect the alpha, comment out above line and use the one below
+		//#warning All of this needs to be updated so health is shown by number of bubbles instead of fade
+		//smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
+
+		//#warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
+		//Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
+
+		smokeDelay = (int)((100 - health) / 10);
+		smokeDelay = Mathf.Clamp (smokeDelay, 1, 10);
+		//A higher number means less smoke/bubbles
+		if (framz > smokeDelay) {
+			var emitParams = new ParticleSystem.EmitParams ();
+			//Debug.Log (emitParams.position);
+			emitParams.startColor = smokeColour;
+			smoke.Emit (emitParams, 1);
+			framz = 0;
+		}
+		framz++;
+
+
 
 		/*
 		 * Restricts player from moving left and right until the camera animation is complete
@@ -186,27 +225,7 @@ public class Player : MonoBehaviour {
 			removeLife ();
 
 
-        //Update smoke colour. The if statement allows for fewer particles to be generated, editable from unity interface.
-        smokeColour = new Color(red/100f, green/100f, blue/100f, 1f);
-
-        //If health will effect the alpha, comment out above line and use the one below
-        //#warning All of this needs to be updated so health is shown by number of bubbles instead of fade
-        //smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
-
-        //#warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
-        //Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
-
-		smokeDelay = (int)((100 - health) / 10);
-		smokeDelay = Mathf.Clamp (smokeDelay, 1, 10);
-        //A higher number means less smoke/bubbles
-        if (framz > smokeDelay) {
-			var emitParams = new ParticleSystem.EmitParams ();
-			//Debug.Log (emitParams.position);
-			emitParams.startColor = smokeColour;
-			smoke.Emit (emitParams, 1);
-			framz = 0;
-		}
-		framz++;
+        
 		
 	}
 
@@ -294,8 +313,29 @@ public class Player : MonoBehaviour {
 		green = 100f;
 		blue = 100f;
 
+		//Reset health to 100
+		health = 100;
+
 		//remove one life
 		lives--;
+
+		//update life counter
+		showLives();
+	}
+
+	//Method to display lives
+	public void showLives () {
+		for (int i = 0; i < startLives; i++) {
+			if (i < lives) {
+				if (livesArray [i] == null)
+					livesArray [i] = GetComponent<LifeCounterScript> ().spawnLife (i);
+			}
+			else {
+				if (livesArray [i] != null)
+					Destroy (livesArray [i]);
+				livesArray [i] = null;
+			}		
+		}
 	}
 
 	//reset method to restart round when deded
