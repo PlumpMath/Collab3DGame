@@ -216,11 +216,8 @@ public class Player : MonoBehaviour {
         smokeColour = new Color(red / 100f, green / 100f, blue / 100f, 1f);
 
         //If health will effect the alpha, comment out above line and use the one below
-        //#warning All of this needs to be updated so health is shown by number of bubbles instead of fade
         //smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
 
-        //#warning Not sure if color will look good on bubbles, maybe expeiment somehow or remove color from bubbles
-        //Behnam CHANGE THIS -> smokeDelay is the number of frames that pass before another smoke particle is created
 
         smokeDelay = (int)((100 - health) / 10);
         smokeDelay = Mathf.Clamp(smokeDelay, 1, 10);

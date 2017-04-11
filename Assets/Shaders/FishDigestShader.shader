@@ -1,4 +1,4 @@
-﻿Shader "Custom/SeaweedShader"
+﻿Shader "Custom/FishDigestShader"
 {
 	Properties
 	{
@@ -50,9 +50,9 @@
 				o.vertex = UnityObjectToClipPos(v.vertex);
  
 				float	_PhaseShift	= 1*_Time[1];
-				float	_SineWave	= _Amplitude* sin((_Frequency* o.vertex.y) + _Speed*_PhaseShift + _Offset);
+				float	_SineWave	= _Amplitude* sin((_Frequency* o.vertex.x) + _Speed*_PhaseShift + _Offset);
 
-				o.vertex.x += _SineWave;
+				o.vertex.y += _SineWave;
 				return o;
 			}
 			
