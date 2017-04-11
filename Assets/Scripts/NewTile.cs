@@ -76,10 +76,6 @@ public class NewTile : MonoBehaviour {
 		go.transform.position = new Vector3(10, Random.Range(-35f, 7f), Random.Range(-80f, 80f));
     }
 
-    private void SpawnCoral(Transform tile, bool hard)
-    {
-        #warning Implement SpawnCoral method
-    }
 
     private void SpawnFishHooks(Transform tile) {
 		GameObject go = Instantiate (fishHook) as GameObject;
@@ -102,7 +98,7 @@ public class NewTile : MonoBehaviour {
 
         go.transform.parent = tile;
 
-        go.transform.position = new Vector3(10, Random.Range(-60f, -50f), Random.Range(-100f, 100f));
+        go.transform.position = new Vector3(30, Random.Range(-60f, -50f), Random.Range(-100f, 100f));
     }
 
 }

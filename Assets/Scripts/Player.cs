@@ -175,7 +175,7 @@ public class Player : MonoBehaviour {
 		 * every second vertical velocity is increased. Otherwise, it is constant
 		*/
 		moveVector.y = Input.GetAxis("Vertical") * verSpeed;
-
+        
 		if (controller.isGrounded) 
 		{
 			verticalVelocity = 0f;
@@ -187,10 +187,11 @@ public class Player : MonoBehaviour {
 		}
 		moveVector.y += verticalVelocity;
 
+        //Scott added animation
+#warning we need up rotation/bubble burst
 
-
-		// Z is for forward movement
-		moveVector.z = horSpeed;
+        // Z is for forward movement
+        moveVector.z = horSpeed;
 
 
 
