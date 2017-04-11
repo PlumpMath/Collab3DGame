@@ -19,6 +19,7 @@ public class Predator1 : MonoBehaviour {
 	private float 		beta;
 	private bool 		leave;
 	private Vector3 	destination;
+	public ParticleSystem blood;
 
 
 	void Start () {
@@ -94,6 +95,7 @@ public class Predator1 : MonoBehaviour {
 		destination = transform.position;
 		destination.z -= 100f;
 		leave = true;
+		blood.Play ();
 		Destroy (gameObject, 3f);
 	}
 

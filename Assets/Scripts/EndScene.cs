@@ -45,4 +45,8 @@ public class EndScene : MonoBehaviour {
 		SceneManager.LoadScene ("main");
 	}
 
+	public void retart() {
+		SceneManager.LoadScene ("Level1");
+	}
+
 }
