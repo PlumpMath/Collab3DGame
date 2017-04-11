@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class menuscript : MonoBehaviour {
 
     public Canvas quitMenu;
+    public Canvas howMenu;
     public Button startText;
     public Button optionsText;
     public Button exitText;
+    public Button howText;
 
     // Use this for initialization
     void Start () {
@@ -18,7 +20,9 @@ public class menuscript : MonoBehaviour {
         startText = quitMenu.GetComponent<Button>();
         optionsText = quitMenu.GetComponent<Button>();
         exitText = quitMenu.GetComponent<Button>();
+        howText = quitMenu.GetComponent<Button>();
         quitMenu.enabled = false;
+        howMenu.enabled = false;
 
     }
 
@@ -29,6 +33,7 @@ public class menuscript : MonoBehaviour {
         startText.enabled = false;
         optionsText.enabled = false;
         exitText.enabled = false;
+        howText.enabled = false;
 
     }
 
@@ -39,6 +44,28 @@ public class menuscript : MonoBehaviour {
         startText.enabled = true;
         optionsText.enabled = true;
         exitText.enabled = true;
+        howText.enabled = true;
+
+    }
+
+    public void HowPress()
+    {
+        howMenu.enabled = true;
+        startText.enabled = false;
+        optionsText.enabled = false;
+        exitText.enabled = false;
+        howText.enabled = false;
+
+    }
+
+    //close exit menu
+    public void notPress()
+    {
+        howMenu.enabled = false;
+        startText.enabled = true;
+        optionsText.enabled = true;
+        exitText.enabled = true;
+        howText.enabled = true;
 
     }
 
