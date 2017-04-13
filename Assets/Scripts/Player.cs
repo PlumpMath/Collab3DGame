@@ -219,7 +219,7 @@ public class Player : MonoBehaviour {
         //smokeColour = new Color(red/100f, green/100f, blue/100f, health/100f);
 
 
-        smokeDelay = (int)((100 - health) / 10);
+		smokeDelay = (int)((100 - (health * 2)) / 10);
         smokeDelay = Mathf.Clamp(smokeDelay, 1, 10);
         //A higher number means less smoke/bubbles
         if (framz > smokeDelay)
