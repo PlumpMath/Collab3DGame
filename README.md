@@ -10,13 +10,8 @@ What is it?
 > - Skills gained: 
 
 ### Todos
-- Report for April 11
-- Normal expansion shader - BG
-- Fog shader-BG
-- Coral background upgrade - BG
 - Background fish - BG
 - Powerups (Speed boost, reset colour, slow mo)
-- ... (Add more here)
 
 ### Quick Start
 
