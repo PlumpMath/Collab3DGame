@@ -33,8 +33,7 @@ public class TileManager : MonoBehaviour {
         //Spawning Initial tile prefabs
         for (int i = 0; i < tilesConstant; i++) 
 		{
-			if (i == 0)
-				SpawnTile (false, 0);
+			SpawnTile (false, 0);
 		}
 
 

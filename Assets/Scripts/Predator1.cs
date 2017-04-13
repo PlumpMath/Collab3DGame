@@ -20,6 +20,7 @@ public class Predator1 : MonoBehaviour {
 	private bool 		leave;
 	private Vector3 	destination;
 	public ParticleSystem blood;
+	private bool eatPlayer = false;
 
 
 	void Start () {
@@ -85,6 +86,7 @@ public class Predator1 : MonoBehaviour {
 
 		//if predator gets close enough to bite
 		if ((player.transform.position - transform.position).magnitude < 6) {
+			eatPlayer = true;
 			playerScript.removeLife ();
 			DestroyPred ();
 		}
@@ -95,7 +97,8 @@ public class Predator1 : MonoBehaviour {
 		destination = transform.position;
 		destination.z -= 100f;
 		leave = true;
-		blood.Play ();
+		if (eatPlayer)
+			blood.Play ();
 		Destroy (gameObject, 3f);
 	}
 
