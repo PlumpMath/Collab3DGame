@@ -260,7 +260,7 @@ public class Player : MonoBehaviour {
     public void AffectHealth(float healthImpact)
     {
         health += healthImpact;
-		health = Mathf.Clamp(health, 0, 100);
+		health = Mathf.Clamp(health, 0, 50);
     }
 
 
