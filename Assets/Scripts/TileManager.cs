@@ -35,8 +35,6 @@ public class TileManager : MonoBehaviour {
 		{
 			if (i == 0)
 				SpawnTile (false, 0);
-			else
-				SpawnTile (true, 0);
 		}
 
 
