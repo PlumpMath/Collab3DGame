@@ -1,17 +1,9 @@
-CSC 205 Group Project: Untitled
+Shaders Game
 ===================
 
 What is it?
 -------------
-
-> **Note:**
-
-> - Final Project for CSC 205 2017 Spring
-> - Skills gained: 
-
-### Todos
-- Background fish - BG
-- Powerups (Speed boost, reset colour, slow mo)
+Final Project for CSC 205 2017 Spring at UVIC. Shaders based game where you must survive in a infinatly generated game. Eat a balance of differnt colors of fish. Sinewave shaders, linear shaders, and constant shaders. [Gameplay Video][4]
 
 ### Quick Start
 
@@ -30,3 +22,4 @@ What is it?
   [1]: https://heat.csc.uvic.ca/coview/outline/2017/Spring/CSC/205
   [2]: http://gfx.uvic.ca/people/ataiya/
   [3]: http://vcg.isti.cnr.it/~tarini/
+  [4]: https://youtu.be/7FIX9NHpiTQ
