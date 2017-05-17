@@ -3,7 +3,7 @@ Shaders Game
 
 What is it?
 -------------
-Final Project for CSC 205 2017 Spring at UVIC. Shaders based game where you must survive in a infinatly generated game. Eat a balance of differnt colors of fish. Sinewave shaders, linear shaders, and constant shaders. Made by Scott Goerzen, Graham Macdonald and Behnam Ghassemi [Gameplay Video][4]
+Final Project for CSC 205 2017 Spring at UVIC. Shaders based game where you must survive in a infinatly generated game. Eat a balance of differnt colors of fish. Sine-wave shaders, linear shaders, and constant shaders. Made by Scott Goerzen, Graham Macdonald and Behnam Ghassemi [Gameplay Video][4]
 
 ### Quick Start
 
